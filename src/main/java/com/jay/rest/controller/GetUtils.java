@@ -1,21 +1,21 @@
 package com.jay.rest.controller;
 
 import com.jay.rest.models.Student;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/")
 public class GetUtils {
 
-    @PostMapping("/putgreet")
-    @ResponseBody
-    public String getPutGreetings(@RequestBody String msg){
-        return msg+" Put is called";
+    @GetMapping("/greeting")
+    public String getPutGreetings(@RequestHeader("accept-language") String msg){
+        return msg+ HttpStatus.OK;
     }
 
-    @PostMapping("/student")
-    @ResponseBody
-    public String getPutGreetings(@RequestBody Student msg){
-        return msg + " Student is called ";
+    @GetMapping("/test")
+    public String getTestGreetings(){
+        return "Good"+ HttpStatus.OK;
     }
+
 }
