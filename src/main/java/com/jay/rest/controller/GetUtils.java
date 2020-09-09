@@ -1,6 +1,5 @@
 package com.jay.rest.controller;
 
-import com.jay.rest.models.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
