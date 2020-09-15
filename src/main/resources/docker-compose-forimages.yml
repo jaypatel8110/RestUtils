@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mymongodb:
+    image: mongo
+    container_name: "mymongodb"
+    ports:
+      - 27017:27017
+  RestUtil:
+    image: restutil
+    container_name: restutil
+    ports:
+      - 8081:8081
+    links:
+      - mymongodb
