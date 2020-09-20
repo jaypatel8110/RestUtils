@@ -48,28 +48,6 @@ public class EmployeeController {
     }
 
 
-  /*  ResponseEntity represents an HTTP response, including headers, body, and status. While @ResponseBody puts
-        the return value into the body of the response,
-    ResponseEntity also allows us to add headers and status code.*/
 
-    @RequestMapping(value = "/getCountry")
-    public ResponseEntity<Student> getStudentWithResponseEntity() {
-
-        var c = new Student();
-        c.setName("France");
-
-        var headers = new HttpHeaders();
-        headers.add("Responded", "MyController");
-        return ResponseEntity.accepted().headers(headers).body(c);
-    }
-
-    @RequestMapping(value = "/getCountry2")
-    @ResponseBody
-    public Student getStudentWithResponseEntity2() {
-
-        var c = new Student();
-        c.setName("France");
-        return c;
-    }
 
 }

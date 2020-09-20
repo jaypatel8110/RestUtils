@@ -18,7 +18,6 @@ public class MongoDbEmployeeController {
     public String saveEmployee(@RequestBody Employee emp) {
         empRepository.save(emp);
         return "employee added successfully::"+emp.getId();
-
     }
 
     @GetMapping("/findAllEmployees")

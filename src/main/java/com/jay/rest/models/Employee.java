@@ -58,4 +58,12 @@ public class Employee {
         return "Employee [id=" + id + ", firstName=" + firstName + ",lastName=" +
                 lastName + ", email=" + email + "]";
     }
+
+ /*   {
+        "id":"4",
+            "firstName":"Jay",
+            "lastName":"Patel",
+            "email":"test@gmail.com"
+    }*/
+
 }

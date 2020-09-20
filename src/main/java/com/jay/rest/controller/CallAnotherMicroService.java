@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/micro")
-public class MicroServiceCall {
+public class CallAnotherMicroService {
 
     @Value("${Microservicetwo.port:Default 8086}")
     private String port;
