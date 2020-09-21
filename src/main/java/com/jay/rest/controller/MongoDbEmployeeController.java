@@ -1,5 +1,6 @@
 package com.jay.rest.controller;
 
+import com.jay.rest.StaticObjects;
 import com.jay.rest.models.Employee;
 import com.jay.rest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class MongoDbEmployeeController {
+public class MongoDbEmployeeController implements StaticObjects {
 
     @Autowired
     private EmployeeRepository empRepository;
 
     @PostMapping("/addEmployee")
     public String saveEmployee(@RequestBody Employee emp) {
+        getLogger().error("employee added successfully" + emp);
         empRepository.save(emp);
         return "employee added successfully::"+emp.getId();
     }

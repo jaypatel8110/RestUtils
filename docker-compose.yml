@@ -5,10 +5,16 @@ services:
     container_name: "mymongodb"
     ports:
     - 27017:27017
+    volumes:
+    - /data/db
   restutil:
    build: .
    ports:
      - "8081:8081"
+   environment:
+     - LOGGING_FILE=./appLog.log
+   volumes:
+   - log_volume:/logs
    links:
         - mymongodb
   splunk:
@@ -20,7 +26,7 @@ services:
       - SPLUNK_PASSWORD=admin123
       - SPLUNK_ENABLE_LISTEN=9997
     ports:
-      - "8000:8000"
+      - "9000:8000"
   splunkforwarder:
       image: splunk/universalforwarder:6.5.3-monitor
       hostname: splunkforwarder
