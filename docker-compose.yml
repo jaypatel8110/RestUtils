@@ -4,42 +4,42 @@ services:
     image: mongo
     container_name: "mymongodb"
     ports:
-    - 27017:27017
+      - 27017:27017
     volumes:
-    - /data/db
-  restutil:
-   build: .
-   ports:
-     - "8081:8081"
-   environment:
-     - LOGGING_FILE=./appLog.log
-   volumes:
-   - log_volume:/logs
-   links:
-        - mymongodb
+      - /data/db
+  rest-util:
+    build: .
+    ports:
+      - "8081:8081"
+    environment:
+      - LOGGING_FILE=/logs/rest-util.log
+    volumes:
+      - log_volume:/logs
+    links:
+      - mymongodb
   splunk:
     image: splunk/splunk
     hostname: splunk
     environment:
       - SPLUNK_START_ARGS=--accept-license
-      - SPLUNK_USERNAME=admin
+      - SPLUNK_USERNAME=root
       - SPLUNK_PASSWORD=admin123
       - SPLUNK_ENABLE_LISTEN=9997
     ports:
       - "9000:8000"
   splunkforwarder:
-      image: splunk/universalforwarder:6.5.3-monitor
-      hostname: splunkforwarder
-      environment:
-        - SPLUNK_START_ARGS=--accept-license --answer-yes
-        - SPLUNK_FORWARD_SERVER=splunk:9997
-        - SPLUNK_USERNAME=admin
-        - SPLUNK_PASSWORD=admin123
-        - SPLUNK_ADD=monitor /logs
-      restart: always
-      depends_on:
-        - splunk
-      volumes:
-        - log_volume:/logs
+    image: splunk/universalforwarder:6.5.3-monitor
+    hostname: splunkforwarder
+    environment:
+      - SPLUNK_START_ARGS=--accept-license --answer-yes
+      - SPLUNK_FORWARD_SERVER=splunk:9997
+      - SPLUNK_USERNAME=root
+      - SPLUNK_PASSWORD=admin123
+      - SPLUNK_ADD=monitor /logs
+    restart: always
+    depends_on:
+      - splunk
+    volumes:
+      - log_volume:/logs
 volumes:
-      log_volume:
+  log_volume:

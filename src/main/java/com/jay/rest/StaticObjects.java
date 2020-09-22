@@ -1,13 +1,15 @@
+/*
 package com.jay.rest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public interface StaticObjects {
 
-
- default Logger getLogger(){
-     Logger logger= LoggerFactory.getLogger(getClass());
+ default Log getLogger(){
+     Log logger = LogFactory.getLog(getClass());
      return logger;
  }
+
 }
+*/

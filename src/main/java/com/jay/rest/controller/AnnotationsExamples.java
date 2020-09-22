@@ -1,7 +1,6 @@
 package com.jay.rest.controller;
 
 
-import com.jay.rest.StaticObjects;
 import com.jay.rest.models.Dbsettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")
-public class AnnotationsExamples implements StaticObjects {
+public class AnnotationsExamples {
 
     @Value("${my.test:Default hello world}")
     private String getHelloWorld;
@@ -19,16 +18,14 @@ public class AnnotationsExamples implements StaticObjects {
     private Dbsettings dbsettings;
 
     @RequestMapping("/hello")
-    public String getGetHelloWorld(){
-        getLogger().trace("Hello called");
-        return  getHelloWorld;
+    public String getGetHelloWorld() {
+        return getHelloWorld;
     }
 
     @RequestMapping("/greet")
-    public String getGreetings(){
-        return  dbsettings.getConnection();
+    public String getGreetings() {
+        return dbsettings.getConnection();
     }
-
 
 
 }

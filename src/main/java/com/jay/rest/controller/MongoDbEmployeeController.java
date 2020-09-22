@@ -1,6 +1,6 @@
 package com.jay.rest.controller;
 
-import com.jay.rest.StaticObjects;
+
 import com.jay.rest.models.Employee;
 import com.jay.rest.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class MongoDbEmployeeController implements StaticObjects {
+public class MongoDbEmployeeController  {
 
     @Autowired
     private EmployeeRepository empRepository;
 
     @PostMapping("/addEmployee")
     public String saveEmployee(@RequestBody Employee emp) {
-        getLogger().error("employee added successfully" + emp);
         empRepository.save(emp);
         return "employee added successfully::"+emp.getId();
     }
@@ -27,7 +26,7 @@ public class MongoDbEmployeeController implements StaticObjects {
         return empRepository.findAll();
     }
 
-    @GetMapping("/findEmployee/{id}")
+   /* @GetMapping("/findEmployee/{id}")
     public Optional<Employee> getEmployee(@PathVariable int id) {
         return empRepository.findById(id);
     }
@@ -36,5 +35,5 @@ public class MongoDbEmployeeController implements StaticObjects {
     public String deleteEmployee(@PathVariable int id) {
         empRepository.deleteById(id);
         return "Deleted Employee Successfully::"+id;
-    }
+    }*/
 }
