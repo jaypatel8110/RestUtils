@@ -7,6 +7,18 @@ services:
       - 27017:27017
     volumes:
       - /data/db
+  mongo_express:
+    image: mongo-express
+    container_name: mongo_express
+    ports:
+      - '7081:8081'
+    environment:
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
+      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_MONGODB_SERVER: 'mymongodb'
+    restart: always
+    links:
+      - mymongodb
   rest-util:
     build: .
     ports:
